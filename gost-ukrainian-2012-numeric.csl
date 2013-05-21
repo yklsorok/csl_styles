@@ -1,119 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" default-locale="en" version="1.0" 
-demote-non-dropping-particle="sort-only" page-range-format="expanded">
-	<info>
-		<title>Ukrainian Standard 2010 (numeric)</title>
-		<id></id>
-		<link href="" rel="self"/>
-		<author>
-			<name>Iershov Anton</name>
-			<email>yklsorok@gmail.com</email>
-			<uri></uri>
-		</author>
-		<category field="generic-base"/>
-		<category citation-format="numeric"/>
-		<published></published>
-		<updated></updated>
-<!--Поки що стиль підтримує тільки форматування статей періодичних видань англійською мовою-->
-		<link href="" rel="documentation"/>
-		<summary></summary>
-		<rights>This work is licensed under GPLv3.0</rights>
-	</info>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" default-locale="ru-RU">
+  <info>
+    <title>Ukrainian GOST (numeric)</title>
+    <id>http://www.zotero.org/styles/gost-r-7-0-5-2008</id>
+    <link href="http://www.zotero.org/styles/gost-r-7-0-5-2008" rel="self"/>
+    <author>
+      <name>Anton Ierhsov</name>
+      <email>yklsorok@gmail.com</email>
+    </author>
+    <category citation-format="author-date"/>
+    <category field="generic-base"/>
+    <updated>2013-05-21</updated>
+    <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
+  </info>
 
 <!--терміни-->
-	<terms>
-		<term name="page" form="short">
-			<single>P.</single>
-			<multiple>P.</multiple>
-		</term>
-	</terms>
+  <terms>
+    <term name="page" form="short">
+      <single>P.</single>
+      <multiple>P.</multiple>
+    </term>
+  </terms>
 
 
 <!--макроси-->
 
-	<macro name="author">
-		<names variable="author">
-			<name name-as-sort-order="all" sort-separator=" " initialize-with="." delimiter=", " delimiter-precedes-last="always"/>
-		</names>
-	</macro>
+  <macro name="author">
+    <names variable="author">
+      <name name-as-sort-order="all" sort-separator=" " initialize-with="." delimiter=", " delimiter-precedes-last="always"/>
+    </names>
+  </macro>
 
-	<macro name="first-position-author">
-		<names variable="author">
-			<name et-al-min="2" et-al-use-first="1" suppress-min="4" name-as-sort-order="first" sort-separator=", "/>
-			<et-al term=""/>
-		</names>
-	</macro>
+  <macro name="author-short">
+    <names variable="author">
+      <name form="short" and="text" delimiter=", " initialize-with=". " sort-separator=", "/>
+      <substitute>
+        <names variable="editor"/>
+        <names variable="translator"/>
+        <text macro="title"/>
+      </substitute>
+    </names>
+  </macro>  
 
-	<macro name="journal">
-		<text variable="container-title" form="short" prefix=" // "/>
-	</macro>
+  <macro name="first-position-author">
+    <names variable="author">
+      <name et-al-min="2" et-al-use-first="1" suppress-min="4" name-as-sort-order="first" sort-separator=", "/>
+    </names>
+  </macro>
 
-	<macro name="year">
-		<date variable="issued">
-			<date-part name="year"/>
-		</date>
-	</macro>
+  <macro name="journal">
+    <text variable="container-title" form="short" prefix=" // "/>
+  </macro>
 
-	<macro name="volume-number">
-		<group delimiter=", ">
-			<group delimiter=" ">
-				<text term="volume" form="short" text-case="sentence"/>
-				<text variable="volume"/>
-			</group>
-			<group delimiter=" ">
-				<text term="issue" form="symbol"/>
-				<text variable="issue"/>
-			</group>
-		</group>
-	</macro>
+  <macro name="year">
+    <date variable="issued">
+      <date-part name="year"/>
+    </date>
+  </macro>
 
-	<macro name="page">
-		<group delimiter=" ">
-			<label variable="page" form="short" text-case="sentence" plural="never"/>
-			<text variable="page"/>
-		</group>
-		<group delimiter=" ">
-			<text variable="number-of-pages"/>
-			<text term="page" form="short"/>
-		</group>
-	</macro>
+  <macro name="volume-number">
+    <group delimiter=", ">
+      <group delimiter=" ">
+        <text term="volume" form="short" text-case="sentence"/>
+        <text variable="volume"/>
+      </group>
+      <group delimiter=" ">
+        <text term="issue" form="symbol"/>
+        <text variable="issue"/>
+      </group>
+    </group>
+  </macro>
+
+  <macro name="page">
+    <group delimiter=" ">
+      <label variable="page" form="short" text-case="sentence" plural="never"/>
+      <text variable="page"/>
+    </group>
+    <group delimiter=" ">
+      <text variable="number-of-pages"/>
+      <text term="page" form="short"/>
+    </group>
+  </macro>
 
 
-	<!-- Цитування в тексті -->
-	<citation collapse="citation-number">
-		<sort>
-			<key variable="citation-number"/>
-		</sort>
-		<layout prefix="[" suffix="]" delimiter=",">
-			<text variable="citation-number"/>
-			<group prefix=", " delimiter=" ">
-				<label variable="locator" form="short" plural="never"/>
-				<text variable="locator"/>
-			</group>
-		</layout>
-	</citation>
+<!-- Цитування в тексті -->
+<!--   <citation collapse="citation-number">
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+    <layout prefix="[" suffix="]" delimiter=",">
+      <text variable="citation-number"/>
+      <group prefix=", " delimiter=" ">
+        <label variable="locator" form="short" plural="never"/>
+        <text variable="locator"/>
+      </group>
+    </layout>
+  </citation> -->
+
+<!-- Цитування в тексті - варіант author-date -->
+  <citation et-al-min="1" et-al-use-first="1" collapse="year">
+    <sort>
+      <key macro="author-short"/>
+      <key macro="year"/>
+    </sort>
+    <layout prefix="(" suffix=")" delimiter="; ">
+      <group delimiter=", ">
+        <group delimiter=" ">
+          <text macro="author-short"/>
+          <text macro="year"/>
+        </group>
+        <text macro="locator"/>
+      </group>
+    </layout>
+  </citation>
 
 <!--Оформлення списка посилань-->
-	<bibliography et-al-min="4" et-al-use-first="1" entry-spacing="0" second-field-align="flush">
-		<layout suffix=".">
-			<text variable="citation-number" suffix=". "/>
-			<group delimiter=". ">
-				<group>
-					<group delimiter=". ">
-						<text macro="first-position-author"/>
-						<text macro="title" suffix="/"/>
-					</group>
-				</group>
-				<text macro="author"/>
-				<group delimiter=".– ">
-					<text macro="journal"/>
-					<text macro="publisher"/>
-					<text macro="year"/>
-					<text macro="volume-number"/>
-					<text macro="page"/>
-					<text macro="access"/>
-				</group>
-			</group>
-		</layout>
-	</bibliography>
+  <bibliography et-al-min="4" et-al-use-first="1" entry-spacing="0" second-field-align="flush">
+    <layout suffix=".">
+      <text variable="citation-number" suffix=". "/>
+      <group delimiter=". ">
+        <group>
+          <group delimiter=". ">
+            <text macro="author"/>           
+            <text variable="title"/>
+          </group>
+        </group>
+        
+        <group delimiter=".– ">
+          <text macro="journal"/>
+          <text macro="publisher"/>
+          <text macro="year"/>
+          <text macro="volume-number"/>
+          <text macro="page"/>
+          <text macro="access"/>
+        </group>
+      </group>
+    </layout>
+  </bibliography>
 </style>
