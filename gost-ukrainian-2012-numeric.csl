@@ -11,7 +11,7 @@
     <category citation-format="author-date"/>
     <category field="generic-base"/>
     <updated>2013-05-21</updated>
-    <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
+    <rights>This work is licensed under GPL</rights>
   </info>
 
 <!--терміни-->
@@ -82,9 +82,8 @@
     </group>
   </macro>
 
-
-<!-- Цитування в тексті -->
-<!--   <citation collapse="citation-number">
+<!-- Цитування в тексті - нумеровані -->
+  <citation collapse="citation-number">
     <sort>
       <key variable="citation-number"/>
     </sort>
@@ -93,23 +92,6 @@
       <group prefix=", " delimiter=" ">
         <label variable="locator" form="short" plural="never"/>
         <text variable="locator"/>
-      </group>
-    </layout>
-  </citation> -->
-
-<!-- Цитування в тексті - варіант author-date -->
-  <citation et-al-min="1" et-al-use-first="1" collapse="year">
-    <sort>
-      <key macro="author-short"/>
-      <key macro="year"/>
-    </sort>
-    <layout prefix="(" suffix=")" delimiter="; ">
-      <group delimiter=", ">
-        <group delimiter=" ">
-          <text macro="author-short"/>
-          <text macro="year"/>
-        </group>
-        <text macro="locator"/>
       </group>
     </layout>
   </citation>
