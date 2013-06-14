@@ -20,7 +20,7 @@
         <single>P.</single>
         <multiple>P.</multiple>
         <term name="etalterm"></term>
-
+        <term name="issue" form="symbol">№</term>
       </term>
     </terms>
   </locale>
@@ -60,7 +60,7 @@
   
   <macro name="two-authors">
     <names variable="author">
-      <name et-al-min="2" sort-separator=" "/>
+      <name initialize="true" et-al-use-first="3" sort-separator=" "/>
     </names>
   </macro>
 
@@ -72,8 +72,7 @@
 
   <macro name="authors-full">
     <names variable="author">
-      <name initialize-with="." et-al-use-first="3" name-as-sort-order="first" sort-separator=" "/>
-      <label text-case="capitalize-first"/>
+      <name initialize-with="." et-al-use-first="3" sort-separator=" "/>
       <et-al term="etalterm"/>
     </names>
   </macro>
@@ -90,11 +89,11 @@
 
   <macro name="volume-number">
     <group delimiter=", ">
-      <group delimiter=" ">
+<!--       <group delimiter=" ">
         <text term="volume" form="short" text-case="sentence"/>
         <text variable="volume"/>
       </group>
-      <group delimiter=" ">
+ -->      <group delimiter=" ">
         <text term="issue" form="symbol"/>
         <text variable="issue"/>
       </group>
@@ -117,25 +116,25 @@
       <if variable="publisher">
 <!-- 1 автор -->
         <text macro="first-position-author"/>
-        <text variable="title" suffix=" / "/>
-        <text macro="one-author"/>
+        <text variable="title" suffix=" / " strip-periods="true"/>
+        <text macro="one-author" suffix=" "/>
       </if>
       <else-if variable="publisher-place">
 <!-- 2 автори -->
         <text macro="first-position-author"/>
-        <text variable="title" suffix=" / "/>
-        <text macro="two-authors"/>
+        <text variable="title" suffix=" / " strip-periods="true"/>
+        <text macro="two-authors" suffix=" "/>
       </else-if>
       <else-if variable="genre">
 <!-- 3 автори -->
         <text macro="first-position-author"/>
-        <text variable="title" suffix=" / "/>
-        <text macro="three-authors" />
+        <text variable="title" suffix=" / " strip-periods="true"/>
+        <text macro="three-authors" suffix=" "/>
       </else-if>
       <else>
 <!-- 4 та більше авторів -->
-        <text variable="title" suffix=" / "/>
-        <text macro="authors-full" suffix=" [et al.]"/>
+        <text variable="title" suffix=" / " strip-periods="true"/>
+        <text macro="authors-full" suffix=" [et al.] "/>
       </else>
     </choose>
   </macro>
@@ -175,27 +174,18 @@
 
 <!--Оформлення списка посилань-->
   <bibliography et-al-min="4" et-al-use-first="1" entry-spacing="0" second-field-align="flush">
-    <layout suffix=".">
+    <layout suffix=" ">
       <text variable="citation-number" suffix=". "/>
-      <group delimiter=". ">
-        <group>
-          <group delimiter=". ">
-            <!-- <text variable="title"/> -->
-            <!-- <text macro="author"/>            -->
-            <text macro="author-title-mix"/>
-
- 
-          </group>
-        </group>
-        
-        <group delimiter=".– ">
-          <text macro="journal"/>
-          <text macro="publisher"/>
-          <text macro="year"/>
-          <text macro="volume-number"/>
-          <text macro="page"/>
-          <text macro="access"/>
-        </group>
+      <group delimiter=" ">
+        <text macro="author-title-mix"/>
+      </group>
+      <group delimiter=". – ">
+        <text macro="journal"/>
+        <text macro="publisher"/>
+        <text macro="year"/>
+        <text macro="volume-number"/>
+        <text macro="page"/>
+        <text macro="access"/>
       </group>
     </layout>
   </bibliography>
