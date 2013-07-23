@@ -1,14 +1,19 @@
-# !!! this script should be run under Windows!!!
+# this script could be run either under Windows or on Linux
 # experiment at your own risk!
-# do not forget to backup database before running the script
+# please, backup database before running the script
 
 # import modules
 import sqlite3
 
 # set full path to your database
 # under Windows it is usually like
-# C:\Users\USER\AppData\Local\Mendeley Ltd\Mendeley Desktop\email@server.com@www.mendeley.com.sqlite
+# "C:\Users\USER\AppData\Local\Mendeley Ltd\Mendeley Desktop\email@server.com@www.mendeley.com.sqlite"
 # where USER is the name of your user, email@server.com is your email
+# under Linux, it is usually like
+# "/home/USER/.local/share/data/Mendeley Ltd./Mendeley Desktop/email@server.com@www.mendeley.com.sqlite"
+# where USER is the name of your user, email@server.com is your email. 
+# !!!note, there should be the full path, otherwise sqlite3 will throw an error
+
 conn = sqlite3.connect('yourdatabase.sqlite')
 
 result = {}
@@ -31,13 +36,12 @@ for key in result.keys():
     elif a == 3:
         fields[key] = "genre"
 
-# update table documents
+# update table "documents"
 for key in fields.keys():
     b = fields[key]
     c.execute('UPDATE Documents SET ' + b + '=\'' + b + '\' WHERE id=' + str(key))
-# Save (commit) the changes
+# save (commit) the changes
 conn.commit()
 
-# We can also close the connection if we are done with it.
-# Just be sure any changes have been committed or they will be lost.
+# close connection
 conn.close()
