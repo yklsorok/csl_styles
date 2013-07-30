@@ -4,6 +4,19 @@
 
 # import modules
 import sqlite3
+import os
+import fnmatch
+import getpass
+
+# define finder function for database file
+def find(pattern, path):
+    result = []
+    for root, dirs, files in os.walk(path):
+        for name in files:
+            if fnmatch.fnmatch(name, pattern):
+                result.append(os.path.join(root, name))
+    return result
+
 
 # set full path to your database
 # under Windows it is usually like
@@ -14,7 +27,9 @@ import sqlite3
 # where USER is the name of your user, email@server.com is your email. 
 # !!!note, there should be the full path, otherwise sqlite3 will throw an error
 
-conn = sqlite3.connect('yourdatabase.sqlite')
+db_path = "C:\Users\\" + getpass.getuser() + "\AppData\Local\Mendeley Ltd\Mendeley Desktop\\"
+db_filename = find('*mendeley.com.sqlite', db_path)
+conn = sqlite3.connect(db_filename[0])
 
 result = {}
 fields = {}
