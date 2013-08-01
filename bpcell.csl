@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="never">
+  <info>
+    <title>Biopolymers and Cell</title>
+    <id>http://www.zotero.org/styles/bpcell</id>
+    <link href="http://www.zotero.org/styles/bpcell" rel="self"/>
+    <link href="http://biopolymers.org.ua/" rel="documentation"/>
+    <author>
+      <name>Anton Iershov</name>
+      <email>yklsorok@gmail.com</email>
+    </author>
+    <category citation-format="numeric"/>
+    <category field="biology"/>
+    <category field="generic-base"/>
+    <updated>2013-07-31T15:10:03+00:00</updated>
+    <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
+  </info>
+  <locale xml:lang="en">
+    <terms>
+      <term name="page" form="short">
+        <single>P.</single>
+        <multiple>P.</multiple>
+      </term>
+      <term name="issue" form="symbol">N</term>
+    </terms>
+  </locale>
+
+  <macro name="author">
+    <names variable="author">
+      <name font-style="italic" initialize-with=". " name-as-sort-order="all" sort-separator=" "/>
+      <label form="short" prefix=" (" suffix=")" text-case="capitalize-first"/>
+    </names>
+  </macro>
+
+  <macro name="title">
+    <choose>
+      <if type="article-journal">
+        <text variable="title" strip-periods="true"/>
+      </if>
+      <else>
+        <text variable="title" strip-periods="true"/>
+      </else>
+    </choose>
+  </macro>
+
+  <macro name="publisher-container">
+    <choose>
+      <if type="book">
+        <group delimiter=": ">
+          <text variable="publisher-place" prefix=".–"/>
+          <text variable="publisher" quotes="true"/>
+        </group>
+      </if>
+    </choose>
+  </macro>
+
+  <macro name="journal">
+    <choose>
+      <if type="article-journal">
+        <text variable="container-title" form="short" prefix=" // "/>
+      </if>
+    </choose>
+  </macro>
+
+  <macro name="issued">
+    <date variable="issued">
+      <choose>
+        <if type="article-journal">
+          <date-part name="year" prefix=".–"/>
+        </if>
+        <else-if type="book">
+          <date-part name="year" prefix=", "/>
+        </else-if>
+      </choose>
+    </date>
+  </macro>
+
+  <macro name="locators">
+    <choose>
+      <if type="book">
+        <text variable="page" suffix="p."/>
+      </if>
+      <else-if type="article-journal">
+        <group delimiter=".–">
+          <group delimiter=", ">
+            <text variable="volume" font-weight="bold"/>
+            <group delimiter=" ">
+              <text term="issue" form="symbol"/>
+              <text variable="issue"/>
+            </group>
+          </group>
+          <text variable="page" prefix="P." suffix="."/>
+        </group>
+      </else-if>
+    </choose>
+  </macro>
+
+  <citation collapse="citation-number">
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+    <layout prefix="[" suffix="]" delimiter=",">
+      <text variable="citation-number"/>
+      <group prefix=", " delimiter=" ">
+        <label variable="locator" form="short" plural="never"/>
+        <text variable="locator"/>
+      </group>
+    </layout>
+  </citation>
+  
+  <bibliography>
+    <layout>
+      <text variable="citation-number" suffix=". "/>
+      <group delimiter=" ">
+        <text macro="author"/>
+        <text macro="title"/>
+        <text macro="journal"/>
+        <text macro="publisher-container"/>
+      </group>
+      <group delimiter=".–">
+        <text macro="issued"/>
+        <text macro="locators"/>
+      </group>
+    </layout>
+  </bibliography>
+</style>
