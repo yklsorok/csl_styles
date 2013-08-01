@@ -35,7 +35,7 @@
   <macro name="title">
     <choose>
       <if type="article-journal">
-        <text variable="title" suffix=" // " strip-periods="true"/>
+        <text variable="title" strip-periods="true"/>
       </if>
       <else>
         <text variable="title" strip-periods="true"/>
@@ -43,40 +43,53 @@
     </choose>
   </macro>
 
-  <macro name="publisher">
+  <macro name="publisher-container">
     <choose>
-      <if type="book" match="all">
+      <if type="book">
         <group delimiter=": ">
-          <text variable="publisher-place"/>
+          <text variable="publisher-place" prefix=".–"/>
           <text variable="publisher" quotes="true"/>
         </group>
       </if>
     </choose>
   </macro>
 
+  <macro name="journal">
+    <choose>
+      <if type="article-journal">
+        <text variable="container-title" form="short" prefix=" // "/>
+      </if>
+    </choose>
+  </macro>
+
   <macro name="issued">
     <date variable="issued">
-      <date-part name="year"/>
+      <choose>
+        <if type="article-journal">
+          <date-part name="year" prefix=".–"/>
+        </if>
+        <else-if type="book">
+          <date-part name="year" prefix=", "/>
+        </else-if>
+      </choose>
     </date>
   </macro>
 
   <macro name="locators">
     <choose>
       <if type="book">
-        <group prefix=".–" suffix="p">
-          <text variable="page"/>
-        </group>
+        <text variable="page" suffix="p."/>
       </if>
       <else-if type="article-journal">
         <group delimiter=".–">
           <group delimiter=", ">
-            <text variable="volume"/>
+            <text variable="volume" font-weight="bold"/>
             <group delimiter=" ">
               <text term="issue" form="symbol"/>
               <text variable="issue"/>
             </group>
           </group>
-          <text variable="page"/>
+          <text variable="page" prefix="P." suffix="."/>
         </group>
       </else-if>
     </choose>
@@ -97,13 +110,13 @@
   
   <bibliography>
     <layout>
+      <group delimiter=" ">
+        <text macro="author"/>
+        <text macro="title"/>
+        <text macro="journal"/>
+        <text macro="publisher-container"/>
+      </group>
       <group delimiter=".–">
-        <group delimiter=" ">
-          <text macro="author"/>
-          <text macro="title"/>
-          <text macro="container"/>
-        </group>
-        <text macro="publisher"/>
         <text macro="issued"/>
         <text macro="locators"/>
       </group>
