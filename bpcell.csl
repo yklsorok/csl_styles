@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="never">
+  <info>
+    <title>Biopolymers and Cell</title>
+    <id>http://www.zotero.org/styles/bpcell</id>
+    <link href="http://www.zotero.org/styles/bpcell" rel="self"/>
+    <link href="http://biopolymers.org.ua/" rel="documentation"/>
+    <author>
+      <name>Anton Iershov</name>
+      <email>yklsorok@gmail.com</email>
+    </author>
+    <category citation-format="numeric"/>
+    <category field="biology"/>
+    <category field="generic-base"/>
+    <updated>2013-07-31T15:10:03+00:00</updated>
+    <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
+  </info>
+  <locale xml:lang="en">
+    <terms>
+      <term name="page" form="short">
+        <single>P.</single>
+        <multiple>P.</multiple>
+        <!-- <term name="etalterm"></term> -->
+        <term name="issue" form="symbol">N</term>
+      </term>
+    </terms>
+  </locale>
+
+  <macro name="author">
+    <names variable="author">
+      <name font-style="italic" and="symbol" delimiter-precedes-last="always" initialize-with=". " name-as-sort-order="all"/>
+      <label form="short" prefix=" (" suffix=")" text-case="capitalize-first"/>
+    </names>
+  </macro>
+
+  <macro name="title">
+    <text variable="title"/>
+  </macro>
+
+  <macro name="publisher">
+    <choose>
+      <if type="book" match="all">
+        <group delimiter=": ">
+          <text variable="publisher-place"/>
+          <text variable="publisher" quotes="true"/>
+        </group>
+      </if>
+    </choose>
+  </macro>
+
+  <macro name="issued">
+    <text variable="issued"/>
+  </macro>
+
+  <macro name="locators">
+    <choose>
+      <if type="book">
+        <group prefix=".–" suffix="p">
+          <text variable="page"/>
+        </group>
+      </if>
+      <else-if type="article-journal">
+        <group delimiter=".–">
+          <group delimiter=", ">
+            <text variable="volume"/>
+            <group delimiter=" ">
+              <text term="issue" form="symbol"/>
+              <text variable="issue"/>
+            </group>
+          </group>
+          <text variable="page"/>
+        </group>
+      </else-if>
+    </choose>
+  </macro>
+
+  <citation collapse="citation-number">
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+    <layout prefix="[" suffix="]" delimiter=",">
+      <text variable="citation-number"/>
+      <group prefix=", " delimiter=" ">
+        <label variable="locator" form="short" plural="never"/>
+        <text variable="locator"/>
+      </group>
+    </layout>
+  </citation>
+  
+  <bibliography>
+    <layout>
+      <text macro="author"/>
+      <text macro="title"/>
+      <text macro="container"/>
+      <text macro="publisher"/>
+      <text macro="issued"/>
+      <text macro="locators"/>
+    </layout>
+  </bibliography>
+</style>
