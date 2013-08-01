@@ -1,6 +1,10 @@
-csl_styles
+CSL style list:
 
-INSTALLATION
+1. Style for Mendeley reference manager according to the rules of Ukrainian Government Accreditation Committee (ДАК)
+
+2. Style for Biopolymers and Cell journal
+
+INSTALLATION OF THE STYLE FOR UKRAINIAN THESES
 
 1. Install the style in Mendeley by URL (View->Citation Style->More Styles…->Get More Styles->Download Style)
 
@@ -8,11 +12,8 @@ INSTALLATION
 
 3. Restart Mendeley and resolve document conflicts by keeping local (!!! not web!!!) versions.
 
-Style list:
 
-1. Style for Mendeley reference manager according to the rules of Ukrainian Government Accreditation Committee (ДАК)
-
-ВСТАНОВЛЕННЯ
+ВСТАНОВЛЕННЯ СТИЛЮ ДЛЯ УКРАЇНСЬКИХ ДИСЕРТАЦІЙ
 
 1. Встановіть стиль в Mendeley за URL (View->Citation Style->More Styles…->Get More Styles->Download Style)
 
