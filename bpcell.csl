@@ -20,21 +20,27 @@
       <term name="page" form="short">
         <single>P.</single>
         <multiple>P.</multiple>
-        <!-- <term name="etalterm"></term> -->
-        <term name="issue" form="symbol">N</term>
       </term>
+      <term name="issue" form="symbol">N</term>
     </terms>
   </locale>
 
   <macro name="author">
     <names variable="author">
-      <name font-style="italic" and="symbol" delimiter-precedes-last="always" initialize-with=". " name-as-sort-order="all"/>
+      <name font-style="italic" initialize-with=". " name-as-sort-order="all" sort-separator=" "/>
       <label form="short" prefix=" (" suffix=")" text-case="capitalize-first"/>
     </names>
   </macro>
 
   <macro name="title">
-    <text variable="title"/>
+    <choose>
+      <if type="article-journal">
+        <text variable="title" suffix=" // " strip-periods="true"/>
+      </if>
+      <else>
+        <text variable="title" strip-periods="true"/>
+      </else>
+    </choose>
   </macro>
 
   <macro name="publisher">
@@ -49,7 +55,9 @@
   </macro>
 
   <macro name="issued">
-    <text variable="issued"/>
+    <date variable="issued">
+      <date-part name="year"/>
+    </date>
   </macro>
 
   <macro name="locators">
@@ -89,12 +97,16 @@
   
   <bibliography>
     <layout>
-      <text macro="author"/>
-      <text macro="title"/>
-      <text macro="container"/>
-      <text macro="publisher"/>
-      <text macro="issued"/>
-      <text macro="locators"/>
+      <group delimiter=".–">
+        <group delimiter=" ">
+          <text macro="author"/>
+          <text macro="title"/>
+          <text macro="container"/>
+        </group>
+        <text macro="publisher"/>
+        <text macro="issued"/>
+        <text macro="locators"/>
+      </group>
     </layout>
   </bibliography>
 </style>
