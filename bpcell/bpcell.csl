@@ -17,9 +17,9 @@
   </info>
   <locale xml:lang="en">
     <terms>
-      <term name="page" form="short">
-        <single>P.</single>
-        <multiple>P.</multiple>
+      <term name="page" form="long">
+        <single>P. </single>
+        <multiple>P. </multiple>
       </term>
       <term name="issue" form="symbol">N</term>
     </terms>
@@ -75,6 +75,11 @@
     </date>
   </macro>
 
+  <macro name="page">
+    <text term="page"/>
+    <text variable="page" suffix="."/>
+  </macro>
+
   <macro name="locators">
     <choose>
       <if type="book">
@@ -89,7 +94,7 @@
               <text variable="issue"/>
             </group>
           </group>
-          <text variable="page" prefix="P." suffix="."/>
+          <text macro="page"/>
         </group>
       </else-if>
     </choose>
@@ -110,6 +115,7 @@
   
   <bibliography>
     <layout>
+      <text variable="citation-number" suffix=". "/>
       <group delimiter=" ">
         <text macro="author"/>
         <text macro="title"/>
