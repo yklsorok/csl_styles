@@ -12,7 +12,7 @@
     <category citation-format="numeric"/>
     <category field="biology"/>
     <category field="generic-base"/>
-    <updated>2013-07-31T15:10:03+00:00</updated>
+    <updated>2013-08-20T15:10:03+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="en">
@@ -33,14 +33,7 @@
   </macro>
 
   <macro name="title">
-    <choose>
-      <if type="article-journal">
-        <text variable="title" strip-periods="true"/>
-      </if>
-      <else>
-        <text variable="title" strip-periods="true"/>
-      </else>
-    </choose>
+    <text variable="title" strip-periods="true" prefix=" "/>
   </macro>
 
   <macro name="publisher-container">
@@ -118,7 +111,9 @@
       <text variable="citation-number" suffix=". "/>
       <group delimiter=" ">
         <text macro="author"/>
-        <text macro="title"/>
+      </group>
+      <text macro="title"/>
+      <group delimiter=" ">
         <text macro="journal"/>
         <text macro="publisher-container"/>
       </group>
