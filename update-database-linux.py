@@ -31,6 +31,7 @@ db_filename = find('*mendeley.com.sqlite', db_path)
 conn = sqlite3.connect(db_filename[1])
 
 result = {}
+doctype = {}
 fields = {}
 c = conn.cursor()
 # get max document id
@@ -40,20 +41,28 @@ maxId = c.fetchone()
 for i in range(maxId[0]):
     for row in c.execute('SELECT count(id) FROM documentContributors WHERE documentId=' + str(i)):
         result[i] = row[0]
+    for row2 in c.execute('SELECT type FROM documents WHERE id=' + str(i)):
+        doctype[i] = row2[0]
+#        print doctype[i]
 # create a dictionary where documentId is associated with required field
+
 for key in result.keys():
     a = result[key]
-    if a == 1:
-        fields[key] = "publisher"
-    elif a == 2:
-        fields[key] = "city"
-    elif a == 3:
-        fields[key] = "genre"
-
+    if a == 0:
+        b = ""
+    else:
+        b = doctype[key]
+    if b == "JournalArticle":
+        if a==1:
+            fields[key] = "publisher"
+        elif a == 2:
+            fields[key] = "city"
+        elif a == 3:
+            fields[key] = "genre"
 # update table "documents"
 for key in fields.keys():
     b = fields[key]
-    c.execute('UPDATE Documents SET ' + b + '=\'' + b + '\' WHERE id=' + str(key))
+#    c.execute('UPDATE Documents SET ' + b + '=\'' + b + '\' WHERE id=' + str(key))
 # save (commit) the changes
 conn.commit()
 
