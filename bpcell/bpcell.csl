@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="never">
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="never" page-range-format="minimal">
   <info>
     <title>Biopolymers and Cell</title>
     <id>http://www.zotero.org/styles/bpcell</id>
@@ -27,7 +27,7 @@
 
   <macro name="author">
     <names variable="author">
-      <name font-style="italic" initialize-with=". " name-as-sort-order="all" sort-separator=" "/>
+      <name font-style="italic" initialize-with="" name-as-sort-order="all" sort-separator=" "/>
       <label form="short" prefix=" (" suffix=")" text-case="capitalize-first"/>
     </names>
   </macro>
@@ -112,7 +112,7 @@
     <layout>
       <text variable="citation-number" suffix=". "/>
       <group delimiter=" ">
-        <text macro="author"/>
+        <text macro="author" suffix="."/>
       </group>
       <text macro="title"/>
       <group delimiter=" ">
