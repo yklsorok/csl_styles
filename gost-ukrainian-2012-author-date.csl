@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" default-locale="en-EN" page-range-format="minimal">
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" default-locale="en-EN" page-range-format="expanded">
   <info>
     <title>Ukrainian GOST (author-date)</title>
     <id>http://www.zotero.org/styles/gost-ukr</id>
@@ -187,7 +187,7 @@
         <text macro="publisher"/>
         <text macro="year"/>
         <text macro="volume-number"/>
-        <text macro="page"/>
+        <text macro="page" suffix="."/>
       </group>
     </layout>
   </bibliography>
