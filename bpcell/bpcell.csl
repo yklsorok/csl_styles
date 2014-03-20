@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="never">
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="never" page-range-format="minimal">
   <info>
     <title>Biopolymers and Cell</title>
     <id>http://www.zotero.org/styles/bpcell</id>
@@ -17,40 +17,49 @@
   </info>
   <locale xml:lang="en">
     <terms>
-      <term name="page" form="long">
+<!--       <term name="page" form="long">
         <single>P. </single>
         <multiple>P. </multiple>
       </term>
       <term name="issue" form="symbol">N</term>
-    </terms>
+ -->    </terms>
   </locale>
 
   <macro name="author">
     <names variable="author">
-      <name font-style="italic" initialize-with=". " name-as-sort-order="all" sort-separator=" "/>
+      <name font-style="italic" initialize-with="" name-as-sort-order="all" sort-separator=" "/>
       <label form="short" prefix=" (" suffix=")" text-case="capitalize-first"/>
     </names>
   </macro>
 
   <macro name="title">
-    <text variable="title" strip-periods="true" prefix=" "/>
+    <choose>
+    <if type="book">
+      <text variable="title" prefix=" "/>
+    </if>
+    <else-if>
+      <text variable="title" strip-periods="true" prefix=" "/>
+    </else-if>
+  </choose>
   </macro>
 
   <macro name="publisher-container">
     <choose>
       <if type="book">
         <group delimiter=": ">
-          <text variable="publisher-place" prefix=".–"/>
+          <text variable="publisher-place" prefix=".– "/>
           <text variable="publisher" quotes="true"/>
         </group>
       </if>
+<!--       <else-if type=article-journal>
+      </else-if> -->
     </choose>
   </macro>
 
   <macro name="journal">
     <choose>
       <if type="article-journal">
-        <text variable="container-title" form="short" prefix=" // "/>
+        <text variable="container-title" form="short" prefix=". " font-style="italic" strip-periods="true" suffix=" "/>
       </if>
     </choose>
   </macro>
@@ -59,17 +68,17 @@
     <date variable="issued">
       <choose>
         <if type="article-journal">
-          <date-part name="year" prefix=".–"/>
+          <date-part name="year" suffix=";"/>
         </if>
         <else-if type="book">
-          <date-part name="year" prefix=", "/>
+          <date-part name="year" prefix=", " suffix=".–"/>
         </else-if>
       </choose>
     </date>
   </macro>
 
   <macro name="page">
-    <text term="page"/>
+    <!-- <text term="page"/> -->
     <text variable="page" suffix="."/>
   </macro>
 
@@ -79,16 +88,9 @@
         <text variable="page" suffix="p."/>
       </if>
       <else-if type="article-journal">
-        <group delimiter=".–">
-          <group delimiter=", ">
-            <text variable="volume" font-weight="bold"/>
-            <group delimiter=" ">
-              <text term="issue" form="symbol"/>
-              <text variable="issue"/>
-            </group>
-          </group>
-          <text macro="page"/>
-        </group>
+        <text variable="volume" font-weight="bold"/>
+        <text variable="issue" prefix="(" suffix="): "/>
+        <text macro="page"/>
       </else-if>
     </choose>
   </macro>
@@ -110,14 +112,14 @@
     <layout>
       <text variable="citation-number" suffix=". "/>
       <group delimiter=" ">
-        <text macro="author"/>
+        <text macro="author" suffix="."/>
       </group>
       <text macro="title"/>
       <group delimiter=" ">
         <text macro="journal"/>
         <text macro="publisher-container"/>
       </group>
-      <group delimiter=".–">
+      <group delimiter=" ">
         <text macro="issued"/>
         <text macro="locators"/>
       </group>
