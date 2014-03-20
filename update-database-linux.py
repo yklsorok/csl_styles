@@ -5,8 +5,9 @@
 
 # import modules
 import sqlite3
-import os
+import getpass
 import fnmatch
+import os
 
 # define finder function for database file
 def find(pattern, path):
@@ -26,7 +27,7 @@ def find(pattern, path):
 # where USER is the name of your user, email@server.com is your email. 
 # !!!note, there should be the full path, otherwise sqlite3 will throw an error
 
-db_path = "/home/" + os.getlogin() + "/.local/share/data/Mendeley Ltd./Mendeley Desktop/"
+db_path = "/home/" + getpass.getuser() + "/.local/share/data/Mendeley Ltd./Mendeley Desktop/"
 db_filename = find('*mendeley.com.sqlite', db_path)
 conn = sqlite3.connect(db_filename[1])
 
