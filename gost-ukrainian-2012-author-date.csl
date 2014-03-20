@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" default-locale="en-EN">
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" default-locale="en-EN" page-range-format="minimal">
   <info>
     <title>Ukrainian GOST (author-date)</title>
     <id>http://www.zotero.org/styles/gost-ukr</id>
@@ -9,8 +9,8 @@
       <email>yklsorok@gmail.com</email>
     </author>
     <category citation-format="author-date"/>
-    <category field="generic-base"/>
-    <updated>2013-05-21</updated>
+<!--unnecessary    <category field="generic-base"/>-->
+    <updated>2014-03-20</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="en">
@@ -22,10 +22,11 @@
         <term name="etalterm"></term>
         <term name="issue" form="symbol">№</term>
       </term>
+      <term name="et-al"></term>
     </terms>
   </locale>
 
-
+<!--поточна робоча версія-->
 <!--макроси-->
 
   <macro name="author">
@@ -48,7 +49,6 @@
   <macro name="first-position-author">
     <names variable="author">
       <name initialize-with="." et-al-min="2" et-al-use-first="1" suppress-min="4" name-as-sort-order="first" sort-separator=" " suffix=" "/>
-      <et-al term="etalterm"/>
     </names>
   </macro>
 
@@ -73,8 +73,8 @@
   <macro name="authors-full">
     <names variable="author">
       <name initialize-with="." et-al-use-first="3" sort-separator=" "/>
-      <et-al term="etalterm"/>
     </names>
+      <text value=" [et al.] "/>
   </macro>
 
   <macro name="journal">
@@ -113,28 +113,28 @@
 
   <macro name="author-title-mix">
     <choose>
-      <if variable="publisher">
 <!-- 1 автор -->
+      <if variable="publisher">
         <text macro="first-position-author"/>
         <text variable="title" suffix=" / " strip-periods="true"/>
         <text macro="one-author" suffix=" "/>
       </if>
-      <else-if variable="publisher-place">
 <!-- 2 автори -->
+      <else-if variable="publisher-place">
         <text macro="first-position-author"/>
         <text variable="title" suffix=" / " strip-periods="true"/>
         <text macro="two-authors" suffix=" "/>
       </else-if>
-      <else-if variable="genre">
 <!-- 3 автори -->
+      <else-if variable="genre">
         <text macro="first-position-author"/>
         <text variable="title" suffix=" / " strip-periods="true"/>
         <text macro="three-authors" suffix=" "/>
       </else-if>
-      <else>
 <!-- 4 та більше авторів -->
+      <else>
         <text variable="title" suffix=" / " strip-periods="true"/>
-        <text macro="authors-full" suffix=" [et al.] "/>
+        <text macro="authors-full"/>
       </else>
     </choose>
   </macro>
@@ -174,6 +174,9 @@
 
 <!--Оформлення списка посилань-->
   <bibliography et-al-min="4" et-al-use-first="1" entry-spacing="0" second-field-align="flush">
+    <sort>
+      <key macro="author"/>
+    </sort>
     <layout suffix=" ">
       <text variable="citation-number" suffix=". "/>
       <group delimiter=" ">
@@ -185,7 +188,6 @@
         <text macro="year"/>
         <text macro="volume-number"/>
         <text macro="page"/>
-        <text macro="access"/>
       </group>
     </layout>
   </bibliography>
