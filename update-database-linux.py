@@ -63,7 +63,7 @@ for key in result.keys():
 # update table "documents"
 for key in fields.keys():
     b = fields[key]
-#    c.execute('UPDATE Documents SET ' + b + '=\'' + b + '\' WHERE id=' + str(key))
+    c.execute('UPDATE Documents SET ' + b + '=\'' + b + '\' WHERE id=' + str(key))
 # save (commit) the changes
 conn.commit()
 
