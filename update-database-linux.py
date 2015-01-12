@@ -81,7 +81,7 @@ for row in c.execute('SELECT id, pages FROM Documents'):
     except:
         # if smth went wrong, i.e. pages are in P111 format
         pass
-print(pages)
+
 # drop publisher/city/genre fields
 c.execute('UPDATE Documents SET publisher=NULL, city=NULL, genre=NULL WHERE type=\'JournalArticle\'')
 # save (commit) the changes
@@ -101,9 +101,9 @@ for key in pages.keys():
 # save (commit) the changes
 conn.commit()
 
-print(str(page_update_count) + " page fields updated")
-print("Publisher/City/Genre fields in " + str(len(fields.keys())) + " article records updated")
-input("Press any key to exit...")
-
+os.system("echo "+ str(page_update_count) + " page fields updated")
+os.system("echo Publisher/City/Genre fields in " + str(len(fields.keys())) + " article records updated")
+os.system("printf \"Press any key to exit...\"")
+os.system("read _")
 # close connection
 conn.close()
